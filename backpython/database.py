@@ -1,6 +1,13 @@
 from motor.motor_asyncio import AsyncIOMotorClient
 from bson import ObjectId
 from fastapi import HTTPException
+from dotenv import load_dotenv
+import os
+load_dotenv()
+db_host = os.getenv("DB_URI")
+client = AsyncIOMotorClient(db_host)
+database = client.todolist
+tasks_collection = database.tasks
 
 async def is_valid_id(id):
     try:
@@ -9,11 +16,6 @@ async def is_valid_id(id):
     except:
         return False
 
-client = AsyncIOMotorClient('mongodb+srv://admin:admin@admin.qqwykfb.mongodb.net/')
-
-database = client.todolist
-
-tasks_collection = database.tasks
 async def get_all_tasks():
     tasks =[]
     cursor = tasks_collection.find({})
