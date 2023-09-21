@@ -1,9 +1,24 @@
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
+from decouple import config
 from database import get_all_tasks, create_task, get_one_task, get_one_task_id, delete_task_id, update_task_id
 from models import Task
 
 app = FastAPI()
-
+app.title = "Tasks App"
+app.version ="1.0.0"
+origins = [config('CLI_URL')]
+# [
+#     r"http://.%2A/.localhost/.com:.*",
+# ]
+# Configuración y middleware aquí
+app.add_middleware(
+          CORSMiddleware,
+          allow_origins=origins,
+          allow_methods=["*"],
+          allow_headers=["*"],
+          allow_credentials=True
+)
 @app.get('/')
 def welcome():
     return {'message': 'Welcome to my first FastAPI'}

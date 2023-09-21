@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
-import TaskNew from "./pages/TaskNew";
+import TaskForm from "./pages/TaskForm";
 
 function App() {
 
@@ -8,7 +8,8 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home/>}/>
-        <Route path="/tasks/new" element={<TaskNew/>}/>
+        <Route path="/tasks/:id" element={<TaskForm/>}/>
+        <Route path="/tasks/new" element={<TaskForm/>}/>
       <Route path="/otro" element={<h1>otro</h1>}/>
       </Routes>
     </BrowserRouter>
