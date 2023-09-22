@@ -6,7 +6,7 @@ function Home(){
     useEffect(()=>{
         async function getTaskList(){
             const response = await axios.get('http://localhost:8000/tasks');
-            console.log(response);
+            //console.log(response);
             setTasks(response.data);
 
         }
