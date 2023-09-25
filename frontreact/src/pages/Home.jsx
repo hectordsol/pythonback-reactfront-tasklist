@@ -13,10 +13,7 @@ function Home(){
         getTaskList();
     },[])
     return (
-        <>
-            <h1 className="text-3xl font-bold">Task List </h1>
             <TaskList tasks={tasks}/>
-        </>
     )
 }
 export default Home;
